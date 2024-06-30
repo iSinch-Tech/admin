@@ -1,15 +1,13 @@
 import Filter from '@/models/Filter';
-import axios from 'axios';
+import axios, { AxiosRequestHeaders } from 'axios';
 
-const baseURL = process.env.NODE_ENV === 'development' ? 'https://cpvptz.upirko.tech/api' : '/api';
-
+const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/api' : '/api';
+// 'https://cpvptz.upirko.tech/api'
 const api = axios.create({
   baseURL,
 });
 
-export const getToken = () => {
-  return window.localStorage.getItem('access_token');
-};
+export const getToken = () => window.localStorage.getItem('access_token');
 
 api.interceptors.response.use(
   (res) => res.data,
@@ -31,18 +29,16 @@ api.interceptors.request.use((config) => {
     config.headers = {
       ...config.headers,
       Authorization: `Bearer ${access_token}`,
-    };
+    } as AxiosRequestHeaders;
   }
   return config;
 });
 
-export const buildFilter = (filter: Filter) => {
-  return Object.fromEntries(
+export const buildFilter = (filter: Filter) => Object.fromEntries(
     Object.entries(filter)
       .filter(([_, value]) => value !== undefined)
       .map(([field, value]) => [`filter[${field}]`, value]),
   );
-};
 
 export interface PageResponse<T> {
   rows: T[];

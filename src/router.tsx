@@ -1,10 +1,20 @@
-// import { Suspense, lazy, FC, ReactNode } from 'react';
 import { UserRole } from '@/enums/userRole.enum';
-
-// import SuspenseLoader from '@/components/SuspenseLoader';
 import BaseLayout from '@/layouts/BaseLayout';
 import MainLayout from '@/layouts/MainLayout';
 import { AppRoute } from '@/models/AppRoute';
+import { Driving } from '@/views/Driving/Driving';
+import Login from '@/views/Login';
+import User from '@/views/User';
+import Users from '@/views/Users';
+import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import * as React from 'react';
+import { Navigate } from 'react-router-dom';
+
+// import { Suspense, lazy, FC, ReactNode } from 'react';
+// import SuspenseLoader from '@/components/SuspenseLoader';
 
 // const Loader = (Component: FC) => (props: JSX.IntrinsicAttributes) =>
 //   (
@@ -14,16 +24,7 @@ import { AppRoute } from '@/models/AppRoute';
 //   );
 // const Login = Loader(lazy(() => import('@/views/Login')));
 // const Users = Loader(lazy(() => import('@/views/Users')));
-import Login from '@/views/Login';
-import { Schedule } from '@/views/Schedule';
-import User from '@/views/User';
-import Users from '@/views/Users';
-import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import * as React from 'react';
-import { Navigate } from 'react-router-dom';
+
 
 const routes: AppRoute[] = [
   {
@@ -98,20 +99,20 @@ const routes: AppRoute[] = [
         },
       },
       {
-        path: '/schedule',
+        path: '/driving',
         children: [
           {
             index: true,
-            element: <Schedule />,
+            element: <Driving />,
           },
           {
-            path: '/schedule/:month',
-            element: <Schedule />,
+            path: '/driving/:month',
+            element: <Driving />,
           },
         ],
         handle: {
           title: 'Расписание',
-          userRole: [UserRole.ADMIN, UserRole.USER],
+          userRole: [UserRole.ADMIN, UserRole.TRAINER],
           icon: <CalendarMonthIcon />,
         },
       },

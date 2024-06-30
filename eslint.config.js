@@ -12,8 +12,8 @@ export default [
     rules: {
       'no-unused-vars': 'warn',
       'no-undef': 'warn',
-      'arrow-body-style': 'warn',
       'block-scoped-var': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
       camelcase: 'warn',
     },
   },
