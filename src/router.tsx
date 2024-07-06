@@ -4,8 +4,9 @@ import MainLayout from '@/layouts/MainLayout';
 import { AppRoute } from '@/models/AppRoute';
 import { Driving } from '@/views/Driving/Driving';
 import Login from '@/views/Login';
-import User from '@/views/User';
-import Users from '@/views/Users';
+import { AddUser } from '@/views/Users/AddUser';
+import User from '@/views/Users/User';
+import Users from '@/views/Users/Users';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
@@ -41,6 +42,10 @@ const routes: AppRoute[] = [
       {
         path: '/users',
         children: [
+          {
+            path: '/users/add-user',
+            element: <AddUser />,
+          },
           {
             index: true,
             element: <Users />,

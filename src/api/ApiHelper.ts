@@ -1,8 +1,7 @@
 import Filter from '@/models/Filter';
 import axios, { AxiosRequestHeaders } from 'axios';
 
-const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/api' : '/api';
-// 'https://cpvptz.upirko.tech/api'
+const baseURL = process.env.NODE_ENV === 'development' ? 'https://cpvptz.upirko.site/api' : '/api';
 const api = axios.create({
   baseURL,
 });

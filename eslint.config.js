@@ -15,6 +15,7 @@ export default [
       'block-scoped-var': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
       camelcase: 'warn',
+      'react/react-in-jsx-scope': 'off'
     },
   },
 ];

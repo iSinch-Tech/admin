@@ -1,4 +1,4 @@
-import { FC, SyntheticEvent, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { FC, SyntheticEvent, useContext, useEffect, useRef, useState } from 'react';
 import { Container, Tooltip, IconButton, useTheme, Paper, Tabs, Tab, Box, Button, TextField } from '@mui/material';
 import LockPersonIcon from '@mui/icons-material/LockPerson';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
@@ -9,7 +9,7 @@ import { UserStatus } from '@/enums/userStatus.enum';
 import User from '@/models/User';
 import { searchUsers } from '@/api/Users';
 import Loader from '@/components/Loader';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TableData from '@/components/TableData';
 import { AppContext } from '@/contexts/AppContext';
 import Filter from '@/models/Filter';
@@ -27,6 +27,7 @@ const Users: FC = () => {
     };
   }, []);
 
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [status, setStatus] = useState(UserStatus.ACTIVE);
@@ -130,6 +131,10 @@ const Users: FC = () => {
     setSearch('');
   };
 
+  const toAddUserPage = () => {
+    navigate('/users/add-user')
+  }
+
   return (
     <Container maxWidth="xl" sx={{ mt: 2 }}>
       <Paper
@@ -166,7 +171,7 @@ const Users: FC = () => {
           </Button>
         </form>
         <Box>
-          <Button variant="contained" startIcon={<PersonAddIcon />}>
+          <Button variant="contained" startIcon={<PersonAddIcon />} onClick={toAddUserPage}>
             Добавить
           </Button>
         </Box>
