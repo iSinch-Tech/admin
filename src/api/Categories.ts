@@ -1,5 +1,7 @@
-import api from './ApiHelper';
+import Category from '@/models/Category';
+import { AxiosResponse } from 'axios';
+import api, { PageResponse } from './ApiHelper';
 
-export const getCategories = () => api.get('/categories');
+export const getCategories = () => api.get<Category[], PageResponse<Category>>('/categories');
 
-export const getCategorie = (id: number) => api.get(`/categories/${id}`);
+export const getCategory = (id: number) => api.get<Category, AxiosResponse<Category>>(`/categories/${id}`);

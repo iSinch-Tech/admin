@@ -1,6 +1,7 @@
-import api, { buildFilter, PageResponse } from './ApiHelper';
 import Filter from '@/models/Filter';
-import User from '@/models/User';
+import User, { NewUser } from '@/models/User';
+import { AxiosResponse } from 'axios';
+import api, { buildFilter, PageResponse } from './ApiHelper';
 
 export const searchUsers = (filter: Filter = {}, offset = 0, limit = 10) => {
   const params = {
@@ -10,20 +11,26 @@ export const searchUsers = (filter: Filter = {}, offset = 0, limit = 10) => {
     orderType: 'DESC',
   };
 
-  return api.get<unknown, PageResponse<User>>('/users', { params });
+  return api.get<User[], PageResponse<User>>('/users', { params });
 };
 
 export const getUsers = (offset = 0, limit = 10) => searchUsers({}, offset, limit);
 
-export const getUser = (id: number) => api.get(`/users/${id}`);
+export const getUser = (id: number) => api.get<User, AxiosResponse<User>>(`/users/${id}`);
 
-export const createUser = (user: User) =>
-  api.post('/users', {
+export const createUser = (user: NewUser) =>
+  api.post<User, PageResponse<User>, NewUser>('/users', {
     login: user.login,
     name: user.name,
     password: user.password,
+    phone: user.phone,
+    birthdate: user.birthdate,
     role: user.role,
     categoryId: user.categoryId,
+    trainerId: user.trainerId,
+    driverLicenseId: user.driverLicenseId,
+    firebaseToken: user.firebaseToken,
+    status: user.status,
   });
 
 export const updateUser = (id: number, user: Partial<User>) => api.patch(`/users/${id}`, user);
