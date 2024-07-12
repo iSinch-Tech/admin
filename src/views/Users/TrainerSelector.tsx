@@ -46,7 +46,7 @@ export const TrainerSelector: FC<TrainerSelector> = ({ setTrainer }) => {
           setSearch(newValue);
           setTrainer(newValue);
         }}
-        renderInput={(params) => <TextField {...params} label="Тренер" />}
+        renderInput={(params) => <TextField {...params} label="Инструктор" />}
         sx={{ mb: 2 }}
       />
       {isLoading && <Loader />}
